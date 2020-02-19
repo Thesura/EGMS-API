@@ -5,6 +5,8 @@ import com.egms.api.service.ISchedulesRepository;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,27 +17,103 @@ public class SchedulesController {
     private ISchedulesRepository schedulesRepository;
 
     @GetMapping()
-    public @ResponseBody JSONArray getSchedules(){
+    public @ResponseBody
+    ResponseEntity<JSONArray> getAll(){
 
         JSONArray schedules = new JSONArray();
-        Iterable<Schedule> schedules1 = schedulesRepository.findAll();
-        schedules1.forEach(schedule -> {
-            schedules.appendElement(schedule);
-        });
+        ResponseEntity<JSONArray> responseEntity;
+        try {
+            Iterable<Schedule> schedulesFromDb = schedulesRepository.findAll();
+            schedulesFromDb.forEach(schedule -> {
+                schedules.appendElement(schedule);
+            });
+            responseEntity = new ResponseEntity<>(schedules, HttpStatus.OK);
+        }
+        catch(Exception ex){
+            JSONObject message = new JSONObject();
+            message.put("Message",ex.getMessage());
+            schedules.appendElement(message);
+            responseEntity = new ResponseEntity<>(schedules, HttpStatus.BAD_REQUEST);
+        }
 
-        return schedules;
+        return responseEntity;
     }
 
 
     @PostMapping()
     public @ResponseBody
-    JSONObject addSchedule(@RequestBody Schedule schedule){
+    ResponseEntity<JSONObject> add(@RequestBody Schedule schedule){
+        JSONObject message = new JSONObject();
+        ResponseEntity<JSONObject> responseEntity;
 
-        schedulesRepository.save(schedule);
+        try {
+            schedulesRepository.save(schedule);
+            message.put("message", "Success");
+            responseEntity = new ResponseEntity<>(message, HttpStatus.CREATED);
+        }
+        catch (Exception ex){
+            message.put("message", ex.getMessage());
+            responseEntity = new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        }
+        return responseEntity;
+    }
+
+
+    @PutMapping()
+    public @ResponseBody ResponseEntity<JSONObject> update(@RequestBody Schedule schedule){
 
         JSONObject message = new JSONObject();
-        message.put("message", "Success");
+        ResponseEntity<JSONObject> responseEntity;
 
-        return message;
+        try {
+            if(schedulesRepository.existsById(schedule.getId())) {
+                schedulesRepository.save(schedule);
+                message.put("message", "Success");
+            }else
+                message.put("message", "Not Found");
+
+            responseEntity = new ResponseEntity<>(message, HttpStatus.OK);
+        }
+        catch (Exception ex){
+            message.put("message", ex.getMessage());
+            responseEntity = new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        }
+        return responseEntity;
+    }
+
+
+    @DeleteMapping("/{id}")
+    public @ResponseBody ResponseEntity<JSONObject> delete(@PathVariable("id") int id){
+        JSONObject message = new JSONObject();
+        ResponseEntity<JSONObject> responseEntity;
+        try {
+            schedulesRepository.deleteById(id);
+            message.put("Message", "Delete Success");
+            responseEntity = new ResponseEntity<>(message, HttpStatus.OK);
+        }
+        catch (Exception ex){
+            message.put("Message", ex.getMessage());
+            responseEntity = new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        }
+
+        return responseEntity;
+    }
+
+    @DeleteMapping()
+    public @ResponseBody ResponseEntity<JSONObject> deleteOutdated(){
+        JSONObject message = new JSONObject();
+        ResponseEntity<JSONObject> responseEntity;
+
+        try{
+            schedulesRepository.deleteOutdated();
+            message.put("Message", "Success");
+            responseEntity = new ResponseEntity<>(message, HttpStatus.OK);
+        }
+        catch (Exception ex){
+            message.put("Message", ex.getMessage());
+            responseEntity = new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        }
+
+        return responseEntity;
     }
 }

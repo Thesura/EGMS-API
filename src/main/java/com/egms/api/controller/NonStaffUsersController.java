@@ -3,12 +3,13 @@ package com.egms.api.controller;
 import com.egms.api.model.NonStaff;
 import com.egms.api.model.NonStaffToLogin;
 import com.egms.api.service.Encrypt;
-import com.egms.api.service.INonStaffUserRepository;
+import com.egms.api.service.INonStaffUsersRepository;
+import com.egms.api.service.Mapper;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Observable;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -16,64 +17,103 @@ import java.util.Observable;
 public class NonStaffUsersController {
 
     @Autowired
-    private INonStaffUserRepository nonStaffUserRepository;
-    private Encrypt encrypt = new Encrypt();
+    private INonStaffUsersRepository nonStaffUsersRepository;
 
     @PostMapping()
-    public @ResponseBody JSONObject add(@RequestBody NonStaff nonStaff){
+    public @ResponseBody ResponseEntity<JSONObject> add(@RequestBody NonStaff nonStaff){
 
-        JSONObject response = new JSONObject();
-        response.put("message", "Success");
-        nonStaff.setPwd(encrypt.getHash(nonStaff.getPwd()));
+        JSONObject message = new JSONObject();
+        ResponseEntity<JSONObject> responseEntity;
+        try {
+            nonStaff.setPwd(Encrypt.getHash(nonStaff.getPwd()));
+            nonStaffUsersRepository.save(nonStaff);
+            message.put("message", "Success");
+            responseEntity = new ResponseEntity<>(message, HttpStatus.CREATED);
+        }
+        catch (Exception ex){
+            message.put("message", ex.getMessage());
+            responseEntity = new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        }
 
-        nonStaffUserRepository.save(nonStaff);
-
-        return response;
+        return responseEntity;
     }
 
     @PostMapping(path = "/login")
-    public @ResponseBody JSONObject login(@RequestBody NonStaffToLogin nonStaff){
+    public @ResponseBody ResponseEntity<JSONObject> login(@RequestBody NonStaffToLogin nonStaff){
 
-        nonStaff.setPwd(encrypt.getHash(nonStaff.getPwd()));
+        JSONObject message = new JSONObject();
+        ResponseEntity<JSONObject> responseEntity;
 
-        JSONObject response = new JSONObject();
+        try {
+            nonStaff.setPwd(Encrypt.getHash(nonStaff.getPwd()));
+            if (nonStaffUsersRepository.existsByName(nonStaff.getName())) {
+                NonStaff nonStaffUser = nonStaffUsersRepository.findByName(nonStaff.getName());
 
-        if(nonStaffUserRepository.existsByName(nonStaff.getName()))
-        {
-            NonStaff nonStaffUser = nonStaffUserRepository.findByName(nonStaff.getName());
+                if (nonStaffUser.getName().equals(nonStaff.getName()) && nonStaffUser.getPwd().equals(nonStaff.getPwd())) {
 
-            if (nonStaffUser.getName().equals(nonStaff.getName()) && nonStaffUser.getPwd().equals(nonStaff.getPwd())) {
-
-                response.put("message", "Success");
+                    message.merge(Mapper.mapNonStaffToJSON(nonStaffUser));
+                    message.put("message", "Success");
+                } else
+                    message.put("message", "Wrong Password");
             } else
+                message.put("message", "Wrong Username");
 
-                response.put("message", "Wrong Password");
-        }else
+            responseEntity = new ResponseEntity<>(message, HttpStatus.OK);
+        }
+        catch (Exception ex){
+            message.put("message", ex.getMessage());
+            responseEntity = new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        }
 
-            response.put("message", "Wrong Username");
-
-        return response;
+        return responseEntity;
     }
 
     @PutMapping()
-    public @ResponseBody JSONObject update(@RequestBody NonStaff nonStaff){
+    public @ResponseBody ResponseEntity<JSONObject> update(@RequestBody NonStaff nonStaff){
 
-        JSONObject response = new JSONObject();
+        JSONObject message = new JSONObject();
+        ResponseEntity<JSONObject> responseEntity;
 
-        if(!(nonStaff.getPwd().isEmpty())){
-
-            nonStaff.setPwd(encrypt.getHash(nonStaff.getPwd()));
-            nonStaffUserRepository.save(nonStaff);
-            response.put("message", "Success(Password Changed)");
+        try {
+            if(nonStaffUsersRepository.existsById(nonStaff.getId())) {
+                if (!(nonStaff.getPwd().isEmpty())) {
+                    nonStaff.setPwd(Encrypt.getHash(nonStaff.getPwd()));
+                    nonStaffUsersRepository.save(nonStaff);
+                    message.put("message", "Success(Password Changed)");
+                } else {
+                    NonStaff nonStaffFromDb = nonStaffUsersRepository.findById(nonStaff.getId());
+                    nonStaff.setPwd(nonStaffFromDb.getPwd());
+                    nonStaffUsersRepository.save(nonStaff);
+                    message.put("message", "Success");
+                }
+            }else
+                message.put("message", "Not Found");
+            responseEntity = new ResponseEntity<>(message, HttpStatus.OK);
         }
-        else{
-            NonStaff nonStaffFromDb = nonStaffUserRepository.findById(nonStaff.getId());
-            nonStaff.setPwd(nonStaffFromDb.getPwd());
-            nonStaffUserRepository.save(nonStaff);
-            response.put("message", "Success");
+        catch (Exception ex){
+            message.put("message", ex.getMessage());
+            responseEntity = new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+
         }
 
-        return response;
+        return responseEntity;
     }
 
+
+    @DeleteMapping("/{id}")
+    public @ResponseBody ResponseEntity<JSONObject> delete(@PathVariable("id") int id){
+        JSONObject message = new JSONObject();
+        ResponseEntity<JSONObject> responseEntity;
+        try {
+            nonStaffUsersRepository.deleteById(id);
+            message.put("Message", "Delete Success");
+            responseEntity = new ResponseEntity<>(message, HttpStatus.OK);
+        }
+        catch (Exception ex){
+            message.put("Message", ex.getMessage());
+            responseEntity = new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        }
+
+        return responseEntity;
+    }
 }

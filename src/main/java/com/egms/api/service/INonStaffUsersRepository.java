@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface INonStaffUserRepository extends CrudRepository<NonStaff, Integer> {
+public interface INonStaffUsersRepository extends CrudRepository<NonStaff, Integer> {
 
     NonStaff findByName(String name);
     NonStaff findById(int id);

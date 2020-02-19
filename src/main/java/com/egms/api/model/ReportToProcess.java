@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 public class ReportToProcess {
-
-    public class Report {
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         private int id;
@@ -19,15 +17,14 @@ public class ReportToProcess {
         private double longitude;
         private double latitude;
 
-        public Report() {
+        public ReportToProcess() {
         }
 
-        public Report(@JsonProperty("area") int area,
-                      @JsonProperty("date_time") String date_time,
-                      @JsonProperty("special_notes") String special_notes,
-                      @JsonProperty("reporter_id") int reporter_id,
-                      @JsonProperty("lng") int longitude,
-                      @JsonProperty("lat") int latitude) {
+        public ReportToProcess(@JsonProperty("date_time") String date_time,
+                               @JsonProperty("special_notes") String special_notes,
+                               @JsonProperty("reporter_id") int reporter_id,
+                               @JsonProperty("lng") double longitude,
+                               @JsonProperty("lat") double latitude) {
             this.area = area;
             this.date_time = date_time;
             this.special_notes = special_notes;
@@ -92,4 +89,3 @@ public class ReportToProcess {
             this.reporter_id = reporter_id;
         }
     }
-}

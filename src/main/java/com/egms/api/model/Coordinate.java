@@ -2,13 +2,10 @@ package com.egms.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "coordinates")
+@Table(name = "Coordinate.coordinates")
 @IdClass(CoordId.class)
 public class Coordinate {
     @Id

@@ -1,6 +1,7 @@
 package com.egms.api.service;
 
 import com.egms.api.model.Coordinate;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

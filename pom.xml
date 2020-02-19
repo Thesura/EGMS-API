@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.2.RELEASE</version>
+		<version>2.1.6.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.egms</groupId>
@@ -57,19 +57,32 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!--<dependency>-->
-			<!--<groupId>io.springfox</groupId>-->
-			<!--<artifactId>springfox-swagger2</artifactId>-->
-			<!--<version>2.9.2</version>-->
-			<!--<scope>compile</scope>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>io.springfox</groupId>-->
-			<!--<artifactId>springfox-swagger-ui</artifactId>-->
-			<!--<version>2.9.2</version>-->
-			<!--<scope>compile</scope>-->
-		<!--</dependency>-->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.minidev</groupId>
+			<artifactId>json-smart</artifactId>
+			<version>2.3</version>
+		</dependency>
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>jcenter-snapshots</id>
+			<name>jcenter</name>
+			<url>http://oss.jfrog.org/artifactory/oss-snapshot-local/</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>

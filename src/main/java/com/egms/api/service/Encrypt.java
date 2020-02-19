@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Encrypt {
 
-    public String getHash(String toHash){//hashing function
+    public static String getHash(String toHash){//hashing function
         byte[] hashByte = null;
         String hash = null;
 
