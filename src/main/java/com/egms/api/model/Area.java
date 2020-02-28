@@ -1,7 +1,6 @@
 package com.egms.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 
 @Entity
@@ -15,7 +14,8 @@ public class Area {
     public Area() {
     }
 
-    public Area(@JsonProperty("name") String name) {
+    public Area(int id ,String name) {
+        this.id = id;
         this.name = name;
     }
 

@@ -52,11 +52,16 @@ public class NonStaffUsersController {
                 if (nonStaffUser.getName().equals(nonStaff.getName()) && nonStaffUser.getPwd().equals(nonStaff.getPwd())) {
 
                     message.merge(Mapper.mapNonStaffToJSON(nonStaffUser));
-                    message.put("message", "Success");
-                } else
-                    message.put("message", "Wrong Password");
-            } else
-                message.put("message", "Wrong Username");
+                    message.put("code", 1);//succesful
+                    message.put("isLoggedIn", true);
+                } else{
+                    message.put("code", 2);//wrong password
+                    message.put("isLoggedIn", false);
+                }
+            } else {
+                message.put("code", 3);//wrong username
+                message.put("isLoggedIn", false);
+            };
 
             responseEntity = new ResponseEntity<>(message, HttpStatus.OK);
         }

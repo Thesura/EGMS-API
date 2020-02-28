@@ -1,6 +1,8 @@
 package com.egms.api.controller;
 
+import com.egms.api.model.Area;
 import com.egms.api.model.Schedule;
+import com.egms.api.service.IAreasRepository;
 import com.egms.api.service.ISchedulesRepository;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 public class SchedulesController {
     @Autowired
     private ISchedulesRepository schedulesRepository;
+    @Autowired
+    private IAreasRepository areasRepository;
 
     @GetMapping()
     public @ResponseBody
@@ -25,6 +29,9 @@ public class SchedulesController {
         try {
             Iterable<Schedule> schedulesFromDb = schedulesRepository.findAll();
             schedulesFromDb.forEach(schedule -> {
+                int id = schedule.getArea();
+                Area area = areasRepository.findById(id);
+                schedule.setAreaName(area.getName());
                 schedules.appendElement(schedule);
             });
             responseEntity = new ResponseEntity<>(schedules, HttpStatus.OK);

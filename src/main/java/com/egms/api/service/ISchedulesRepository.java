@@ -15,4 +15,5 @@ public interface ISchedulesRepository extends CrudRepository<Schedule, Integer> 
     @Query("DELETE FROM Schedule WHERE end_date_time < CURRENT_TIMESTAMP")
     void deleteOutdated();
 
+
 }

@@ -15,6 +15,7 @@ public class Schedule {
     private String end_date_time;
     private int area;
     private int poster_id;
+    private String areaName;
 
     public Schedule() {
     }
@@ -33,6 +34,14 @@ public class Schedule {
 
     public int getId() {
         return id;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
     }
 
     public void setId(int id) {

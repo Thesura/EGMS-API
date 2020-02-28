@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface IAreasRepository extends CrudRepository<Area, Integer> {
 
     Area findByName(String name);
+    Area findById(int id);
     boolean existsByName(String name);
 }

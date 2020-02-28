@@ -49,13 +49,16 @@ public class StaffUsersController {
 
                 if (staffUser.getName().equals(staff.getName()) && staffUser.getPwd().equals(staff.getPwd())) {
 
-                    message.put("message", "Success");
-                } else
-
-                    message.put("message", "Wrong Password");
-            } else
-
-                message.put("message", "Wrong Username");
+                    message.put("code", 1);//succesful
+                    message.put("isLoggedIn", true);
+                } else{
+                    message.put("code", 2);//wrong password
+                    message.put("isLoggedIn", false);
+                }
+            } else {
+                message.put("code", 3);//wrong username
+                message.put("isLoggedIn", false);
+            }
 
             responseEntity = new ResponseEntity<>(message, HttpStatus.OK);
         }
