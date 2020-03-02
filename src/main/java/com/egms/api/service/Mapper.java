@@ -3,6 +3,7 @@ package com.egms.api.service;
 import com.egms.api.model.NonStaff;
 import com.egms.api.model.Report;
 import com.egms.api.model.ReportToProcess;
+import com.egms.api.model.Staff;
 import net.minidev.json.JSONObject;
 
 public class Mapper {
@@ -30,5 +31,16 @@ public class Mapper {
         nonStaff.put("address" , nonStaffToMap.getAddress());
 
         return nonStaff;
+    }
+
+    public static JSONObject mapStaffToJSON(Staff staffToMap){
+        JSONObject staff = new JSONObject();
+        staff.put("id", staffToMap.getId());
+        staff.put("name" , staffToMap.getName());
+        staff.put("phone" , staffToMap.getPhoneNo());
+        staff.put("email" , staffToMap.getEmail());
+        staff.put("area" , staffToMap.getAreaOfOperation());
+
+        return staff;
     }
 }

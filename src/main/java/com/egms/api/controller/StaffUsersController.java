@@ -3,6 +3,7 @@ import com.egms.api.model.Staff;
 import com.egms.api.model.StaffToLogin;
 import com.egms.api.service.Encrypt;
 import com.egms.api.service.IStaffUsersRepository;
+import com.egms.api.service.Mapper;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,6 +51,7 @@ public class StaffUsersController {
 
                 if (staffUser.getName().equals(staff.getName()) && staffUser.getPwd().equals(staff.getPwd())) {
 
+                    message.merge(Mapper.mapStaffToJSON(staffUser));
                     message.put("code", 1);//succesful
                     message.put("isLoggedIn", true);
                 } else{
