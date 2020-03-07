@@ -1,9 +1,6 @@
 package com.egms.api.service;
 
-import com.egms.api.model.NonStaff;
-import com.egms.api.model.Report;
-import com.egms.api.model.ReportToProcess;
-import com.egms.api.model.Staff;
+import com.egms.api.model.*;
 import net.minidev.json.JSONObject;
 
 public class Mapper {
@@ -42,5 +39,25 @@ public class Mapper {
         staff.put("area" , staffToMap.getAreaOfOperation());
 
         return staff;
+    }
+
+    public static Staff mapUpdate(StaffUpdate update){
+        Staff staff = new Staff(update.getName(),
+                update.getPhoneNo(),
+                update.getEmail(),
+                "",
+                update.getAreaOfOperation());
+
+        return staff;
+    }
+
+    public static NonStaff mapUpdate(NonStaffUpdate update){
+        NonStaff nonStaff = new NonStaff(update.getName(),
+                update.getPhoneNo(),
+                update.getEmail(),
+                "",
+                update.getAddress());
+
+        return nonStaff;
     }
 }

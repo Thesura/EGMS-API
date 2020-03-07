@@ -2,6 +2,8 @@ package com.egms.api.controller;
 
 import com.egms.api.model.NonStaff;
 import com.egms.api.model.NonStaffToLogin;
+import com.egms.api.model.NonStaffUpdate;
+import com.egms.api.model.Staff;
 import com.egms.api.service.Encrypt;
 import com.egms.api.service.INonStaffUsersRepository;
 import com.egms.api.service.Mapper;
@@ -77,21 +79,43 @@ public class NonStaffUsersController {
     public @ResponseBody ResponseEntity<JSONObject> update(@RequestBody NonStaff nonStaff){
 
         JSONObject message = new JSONObject();
-        ResponseEntity<JSONObject> responseEntity;
+        ResponseEntity<JSONObject> responseEntity = null;
 
         try {
-            if(nonStaffUsersRepository.existsById(nonStaff.getId())) {
+            if (nonStaffUsersRepository.existsById(nonStaff.getId())) {
                 if (!(nonStaff.getPwd().isEmpty())) {
                     nonStaff.setPwd(Encrypt.getHash(nonStaff.getPwd()));
                     nonStaffUsersRepository.save(nonStaff);
                     message.put("message", "Success(Password Changed)");
-                } else {
+                } else
+                    message.put("message", "Not Found");
+                responseEntity = new ResponseEntity<>(message, HttpStatus.OK);
+            }
+        }
+        catch (Exception ex){
+            message.put("message", ex.getMessage());
+            responseEntity = new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+
+        }
+
+        return responseEntity;
+    }
+
+    @PutMapping(path = "/nopwd")
+    public @ResponseBody ResponseEntity<JSONObject> updateNoPwd(@RequestBody NonStaffUpdate nonStaffUpdate){
+
+        JSONObject message = new JSONObject();
+        ResponseEntity<JSONObject> responseEntity;
+        NonStaff nonStaff = Mapper.mapUpdate(nonStaffUpdate);
+
+        try {
+            if(nonStaffUsersRepository.existsById(nonStaff.getId())) {
                     NonStaff nonStaffFromDb = nonStaffUsersRepository.findById(nonStaff.getId());
                     nonStaff.setPwd(nonStaffFromDb.getPwd());
                     nonStaffUsersRepository.save(nonStaff);
                     message.put("message", "Success");
                 }
-            }else
+            else
                 message.put("message", "Not Found");
             responseEntity = new ResponseEntity<>(message, HttpStatus.OK);
         }
@@ -103,7 +127,6 @@ public class NonStaffUsersController {
 
         return responseEntity;
     }
-
 
     @DeleteMapping("/{id}")
     public @ResponseBody ResponseEntity<JSONObject> delete(@PathVariable("id") int id){

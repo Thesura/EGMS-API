@@ -1,6 +1,5 @@
 package com.egms.api.controller;
-import com.egms.api.model.Staff;
-import com.egms.api.model.StaffToLogin;
+import com.egms.api.model.*;
 import com.egms.api.service.Encrypt;
 import com.egms.api.service.IStaffUsersRepository;
 import com.egms.api.service.Mapper;
@@ -81,16 +80,9 @@ public class StaffUsersController {
 
         try {
             if(staffUsersRepository.existsById(staff.getId())){
-            if (!(staff.getPwd().isEmpty())) {
                 staff.setPwd(Encrypt.getHash(staff.getPwd()));
                 staffUsersRepository.save(staff);
                 message.put("message", "Success(Password Changed)");
-            } else {
-                Staff staffFromDb = staffUsersRepository.findById(staff.getId());
-                staff.setPwd(staffFromDb.getPwd());
-                staffUsersRepository.save(staff);
-                message.put("message", "Success");
-            }
             }else
                 message.put("message", "Not Found");
 
@@ -100,6 +92,33 @@ public class StaffUsersController {
             message.put("message", ex.getMessage());
             responseEntity = new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
         }
+        return responseEntity;
+    }
+
+    @PutMapping(path = "/nopwd")
+    public @ResponseBody ResponseEntity<JSONObject> updateNoPwd(@RequestBody StaffUpdate staffUpdate){
+
+        JSONObject message = new JSONObject();
+        ResponseEntity<JSONObject> responseEntity;
+        Staff staff = Mapper.mapUpdate(staffUpdate);
+
+        try {
+            if(staffUsersRepository.existsById(staff.getId())) {
+                Staff staffFromDb = staffUsersRepository.findById(staff.getId());
+                staff.setPwd(staffFromDb.getPwd());
+                staffUsersRepository.save(staff);
+                message.put("message", "Success");
+            }
+            else
+                message.put("message", "Not Found");
+            responseEntity = new ResponseEntity<>(message, HttpStatus.OK);
+        }
+        catch (Exception ex){
+            message.put("message", ex.getMessage());
+            responseEntity = new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+
+        }
+
         return responseEntity;
     }
 
