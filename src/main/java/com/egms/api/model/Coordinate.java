@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Coordinate.coordinates")
-@IdClass(CoordId.class)
 public class Coordinate {
     @Id
     private int area_id;
