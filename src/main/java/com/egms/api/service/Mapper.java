@@ -47,6 +47,7 @@ public class Mapper {
                 update.getEmail(),
                 "",
                 update.getAreaOfOperation());
+        staff.setId(update.getId());
 
         return staff;
     }
@@ -57,6 +58,7 @@ public class Mapper {
                 update.getEmail(),
                 "",
                 update.getAddress());
+        nonStaff.setId(update.getId());
 
         return nonStaff;
     }
