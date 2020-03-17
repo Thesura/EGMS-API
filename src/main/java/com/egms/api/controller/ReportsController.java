@@ -35,11 +35,17 @@ public class ReportsController {
 
         try{
             coord = reportsRepository.getAreaId(lng, lat);
-            reportToProcess.setArea(coord.getArea_id());
-            report = Mapper.mapReport(reportToProcess);
-            reportsRepository.save(report);
-            message.put("message", "Success");
-            responseEntity = new ResponseEntity<>(message, HttpStatus.CREATED);
+            if(coord != null) {
+                reportToProcess.setArea(coord.getArea_id());
+                report = Mapper.mapReport(reportToProcess);
+                reportsRepository.save(report);
+                message.put("message", "Success");
+                responseEntity = new ResponseEntity<>(message, HttpStatus.CREATED);
+            }else{
+                message.put("message", "Area Not Found");
+                responseEntity = new ResponseEntity<>(message, HttpStatus.OK);
+            }
+
         }
         catch (Exception ex){
             message.put("message", ex.getMessage());
