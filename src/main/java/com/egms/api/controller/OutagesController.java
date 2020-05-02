@@ -59,6 +59,22 @@ public class OutagesController {
         return responseEntity;
     }
 
+    @DeleteMapping()
+    public @ResponseBody ResponseEntity<JSONObject> deleteFixed(){
+        JSONObject message = new JSONObject();
+        ResponseEntity<JSONObject> responseEntity;
+        try {
+            outagesRepository.deleteOutagesByStatus("Fixed");
+            message.put("Message", "Delete Success");
+            responseEntity = new ResponseEntity<>(message, HttpStatus.OK);
+        }
+        catch (Exception ex){
+            message.put("Message", ex.getMessage());
+            responseEntity = new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        }
+
+        return responseEntity;
+    }
 
     @DeleteMapping("/{id}")
     public @ResponseBody ResponseEntity<JSONObject> delete(@PathVariable("id") int id){

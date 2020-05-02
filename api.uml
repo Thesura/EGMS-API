@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.egms.api</OriginalElement>
+  <nodes>
+    <node x="766.4305555555555" y="325.0">com.egms.api.ApiApplicationTests</node>
+    <node x="1199.4305555555557" y="325.0">com.egms.api.config.SwaggerConfig</node>
+    <node x="882.8363095238094" y="120.0">com.egms.api.model.NonStaffToLogin</node>
+    <node x="961.5409226190475" y="0.0">com.egms.api.model.NonStaff</node>
+    <node x="112.5" y="325.0">com.egms.api.model.Area</node>
+    <node x="0.0" y="120.0">com.egms.api.service.ICoordinatesRepository</node>
+    <node x="252.0" y="405.0">com.egms.api.service.ISchedulesRepository</node>
+    <node x="67.19047619047626" y="250.0">com.egms.api.controller.CoordinatesController</node>
+    <node x="349.18055555555554" y="325.0">com.egms.api.model.Schedule</node>
+    <node x="955.8296130952381" y="250.0">com.egms.api.controller.NonStaffUsersController</node>
+    <node x="555.4305555555555" y="485.0">com.egms.api.controller.OutagesController</node>
+    <node x="532.2096415983311" y="109.06344410876133">com.egms.api.service.DateTime</node>
+    <node x="1391.829613095238" y="0.0">com.egms.api.model.Staff</node>
+    <node x="407.57961309523813" y="250.0">com.egms.api.controller.ReportsController</node>
+    <node x="1524.267113095238" y="0.0">com.egms.api.model.StaffUpdate</node>
+    <node x="492.01711309523813" y="0.0">com.egms.api.model.ReportToProcess</node>
+    <node x="988.4305555555557" y="325.0">com.egms.api.model.ScheduleToReturn</node>
+    <node x="67.40277777777777" y="405.0">com.egms.api.service.IAreasRepository</node>
+    <node x="590.9305555555555" y="325.0">com.egms.api.model.Outage</node>
+    <node x="381.01711309523813" y="0.0">com.egms.api.model.Report</node>
+    <node x="1390.4305555555557" y="325.0">com.egms.api.ApiApplication</node>
+    <node x="1058.8363095238094" y="120.0">com.egms.api.service.INonStaffUsersRepository</node>
+    <node x="766.8363095238094" y="120.0">com.egms.api.service.Mapper</node>
+    <node x="0.0" y="485.0">com.egms.api.controller.AreasController</node>
+    <node x="1413.8363095238096" y="120.0">com.egms.api.service.IStaffUsersRepository</node>
+    <node x="1629.267113095238" y="120.0">com.egms.api.model.StaffToLogin</node>
+    <node x="669.0171130952381" y="0.0">com.egms.api.model.NonStaffUpdate</node>
+    <node x="209.18055555555557" y="485.0">com.egms.api.controller.SchedulesController</node>
+    <node x="242.72172619047615" y="120.0">com.egms.api.service.IReportsRepository</node>
+    <node x="1295.8363095238094" y="120.0">com.egms.api.service.Encrypt</node>
+    <node x="501.18055555555554" y="405.0">com.egms.api.service.IOutagesRepository</node>
+    <node x="130.89508928571422" y="0.0">com.egms.api.model.Coordinate</node>
+    <node x="1376.575892857143" y="250.0">com.egms.api.controller.StaffUsersController</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.egms.api.controller.StaffUsersController" target="com.egms.api.model.StaffUpdate">
+      <point x="45.0" y="-15.0" />
+      <point x="1511.575892857143" y="220.0" />
+      <point x="1618.767113095238" y="220.0" />
+      <point x="31.5" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.StaffUsersController" target="com.egms.api.model.StaffToLogin">
+      <point x="75.0" y="-15.0" />
+      <point x="1541.575892857143" y="230.0" />
+      <point x="1694.267113095238" y="230.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.NonStaffUsersController" target="com.egms.api.model.NonStaffToLogin">
+      <point x="-17.16666666666663" y="-15.0" />
+      <point x="1041.6629464285716" y="200.0" />
+      <point x="960.8363095238094" y="200.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.ReportsController" target="com.egms.api.model.Coordinate">
+      <point x="-67.5" y="-15.0" />
+      <point x="421.07961309523813" y="230.0" />
+      <point x="232.22172619047615" y="230.0" />
+      <point x="232.22172619047615" y="90.0" />
+      <point x="205.27008928571422" y="90.0" />
+      <point x="14.875" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.NonStaffUsersController" target="com.egms.api.model.NonStaff">
+      <point x="51.5" y="-15.0" />
+      <point x="1110.329613095238" y="220.0" />
+      <point x="1285.3363095238094" y="220.0" />
+      <point x="1285.3363095238094" y="50.0" />
+      <point x="1053.4159226190475" y="50.0" />
+      <point x="39.375" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.CoordinatesController" target="com.egms.api.model.Coordinate">
+      <point x="47.5" y="-15.0" />
+      <point x="210.5" y="100.0" />
+      <point x="175.52008928571422" y="100.0" />
+      <point x="-14.875" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.NonStaffUsersController" target="com.egms.api.service.Encrypt">
+      <point x="85.83333333333337" y="-15.0" />
+      <point x="1144.6629464285716" y="230.0" />
+      <point x="1320.0863095238094" y="230.0" />
+      <point x="-24.25" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.SchedulesController" target="com.egms.api.model.Area">
+      <point x="-22.25" y="-15.0" />
+      <point x="275.93055555555554" y="460.0" />
+      <point x="241.5" y="460.0" />
+      <point x="241.5" y="380.0" />
+      <point x="177.5" y="380.0" />
+      <point x="26.0" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.StaffUsersController" target="com.egms.api.service.Mapper">
+      <point x="-75.0" y="-15.0" />
+      <point x="1391.575892857143" y="190.0" />
+      <point x="846.8363095238094" y="190.0" />
+      <point x="32.0" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.service.Mapper" target="com.egms.api.model.Staff">
+      <point x="21.33333333333337" y="-15.0" />
+      <point x="836.1696428571429" y="70.0" />
+      <point x="1401.704613095238" y="70.0" />
+      <point x="-29.625" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.ReportsController" target="com.egms.api.model.ReportToProcess">
+      <point x="13.5" y="-15.0" />
+      <point x="502.07961309523813" y="210.0" />
+      <point x="531.2671130952381" y="210.0" />
+      <point x="-39.25" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.ReportsController" target="com.egms.api.service.Mapper">
+      <point x="67.5" y="-15.0" />
+      <point x="556.0796130952381" y="230.0" />
+      <point x="782.8363095238094" y="230.0" />
+      <point x="-32.0" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.OutagesController" target="com.egms.api.service.IOutagesRepository">
+      <point x="-41.5" y="-15.0" />
+      <point x="596.9305555555555" y="460.0" />
+      <point x="589.1805555555555" y="460.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.ReportsController" target="com.egms.api.service.IReportsRepository">
+      <point x="-40.5" y="-15.0" />
+      <point x="448.07961309523813" y="220.0" />
+      <point x="328.72172619047615" y="220.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.service.Mapper" target="com.egms.api.model.StaffUpdate">
+      <point x="42.66666666666663" y="-15.0" />
+      <point x="857.5029761904761" y="100.0" />
+      <point x="1555.767113095238" y="100.0" />
+      <point x="-31.5" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.service.IOutagesRepository" target="com.egms.api.model.Outage">
+      <point x="0.0" y="-15.0" />
+      <point x="589.1805555555555" y="380.0" />
+      <point x="614.6805555555555" y="380.0" />
+      <point x="-23.75" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.NonStaffUsersController" target="com.egms.api.service.Mapper">
+      <point x="-51.5" y="-15.0" />
+      <point x="1007.3296130952381" y="210.0" />
+      <point x="814.8363095238094" y="210.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.StaffUsersController" target="com.egms.api.model.Staff">
+      <point x="-15.0" y="-15.0" />
+      <point x="1451.575892857143" y="170.0" />
+      <point x="1403.3363095238096" y="170.0" />
+      <point x="1403.3363095238096" y="90.0" />
+      <point x="1441.204613095238" y="90.0" />
+      <point x="9.875" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.service.Mapper" target="com.egms.api.model.Report">
+      <point x="-42.66666666666663" y="-15.0" />
+      <point x="772.1696428571429" y="90.0" />
+      <point x="437.89211309523813" y="90.0" />
+      <point x="11.375" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.service.ICoordinatesRepository" target="com.egms.api.model.Coordinate">
+      <point x="0.0" y="-15.0" />
+      <point x="100.0" y="100.0" />
+      <point x="145.77008928571422" y="100.0" />
+      <point x="-44.625" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.AreasController" target="com.egms.api.model.Area">
+      <point x="-37.25" y="-15.0" />
+      <point x="37.25" y="460.0" />
+      <point x="50.11111111111114" y="460.0" />
+      <point x="50.11111111111114" y="380.0" />
+      <point x="125.5" y="380.0" />
+      <point x="-26.0" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.service.IReportsRepository" target="com.egms.api.model.Report">
+      <point x="43.0" y="-15.0" />
+      <point x="371.72172619047615" y="100.0" />
+      <point x="392.39211309523813" y="100.0" />
+      <point x="-34.125" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.service.IAreasRepository" target="com.egms.api.model.Area">
+      <point x="0.0" y="-15.0" />
+      <point x="146.90277777777777" y="380.0" />
+      <point x="151.5" y="380.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.SchedulesController" target="com.egms.api.service.IAreasRepository">
+      <point x="-66.75" y="-15.0" />
+      <point x="231.43055555555557" y="460.0" />
+      <point x="186.65277777777777" y="460.0" />
+      <point x="39.75" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.service.ISchedulesRepository" target="com.egms.api.model.Schedule">
+      <point x="0.0" y="-15.0" />
+      <point x="346.0" y="380.0" />
+      <point x="375.93055555555554" y="380.0" />
+      <point x="-26.75" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.service.Mapper" target="com.egms.api.model.ReportToProcess">
+      <point x="-21.333333333333258" y="-15.0" />
+      <point x="793.5029761904761" y="70.0" />
+      <point x="609.7671130952381" y="70.0" />
+      <point x="39.25" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.service.INonStaffUsersRepository" target="com.egms.api.model.NonStaff">
+      <point x="0.0" y="-15.0" />
+      <point x="1166.8363095238094" y="60.0" />
+      <point x="1027.1659226190475" y="60.0" />
+      <point x="13.125" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.CoordinatesController" target="com.egms.api.service.ICoordinatesRepository">
+      <point x="-47.5" y="-15.0" />
+      <point x="114.69047619047626" y="230.0" />
+      <point x="100.0" y="230.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.ReportsController" target="com.egms.api.model.Report">
+      <point x="-13.5" y="-15.0" />
+      <point x="475.07961309523813" y="210.0" />
+      <point x="425.22172619047615" y="210.0" />
+      <point x="425.22172619047615" y="100.0" />
+      <point x="415.14211309523813" y="100.0" />
+      <point x="-11.375" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.NonStaffUsersController" target="com.egms.api.model.NonStaffUpdate">
+      <point x="-85.83333333333337" y="-15.0" />
+      <point x="972.9962797619048" y="220.0" />
+      <point x="717.0967261904761" y="220.0" />
+      <point x="717.0967261904761" y="100.0" />
+      <point x="707.0171130952381" y="100.0" />
+      <point x="-38.0" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.StaffUsersController" target="com.egms.api.service.IStaffUsersRepository">
+      <point x="15.0" y="-15.0" />
+      <point x="1481.575892857143" y="210.0" />
+      <point x="1508.8363095238096" y="210.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.OutagesController" target="com.egms.api.model.Outage">
+      <point x="41.5" y="-15.0" />
+      <point x="679.9305555555555" y="460.0" />
+      <point x="687.6805555555555" y="460.0" />
+      <point x="687.6805555555555" y="380.0" />
+      <point x="662.1805555555555" y="380.0" />
+      <point x="23.75" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.AreasController" target="com.egms.api.service.IAreasRepository">
+      <point x="37.25" y="-15.0" />
+      <point x="111.75" y="460.0" />
+      <point x="107.15277777777777" y="460.0" />
+      <point x="-39.75" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.SchedulesController" target="com.egms.api.service.ISchedulesRepository">
+      <point x="22.25" y="-15.0" />
+      <point x="320.43055555555554" y="460.0" />
+      <point x="346.0" y="460.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.StaffUsersController" target="com.egms.api.service.Encrypt">
+      <point x="-45.0" y="-15.0" />
+      <point x="1421.575892857143" y="180.0" />
+      <point x="1368.5863095238094" y="180.0" />
+      <point x="24.25" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.service.IReportsRepository" target="com.egms.api.model.Coordinate">
+      <point x="-43.0" y="-15.0" />
+      <point x="285.72172619047615" y="80.0" />
+      <point x="235.02008928571422" y="80.0" />
+      <point x="44.625" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.service.Mapper" target="com.egms.api.model.NonStaff">
+      <point x="0.0" y="-15.0" />
+      <point x="814.8363095238094" y="50.0" />
+      <point x="974.6659226190475" y="50.0" />
+      <point x="-39.375" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.NonStaffUsersController" target="com.egms.api.service.INonStaffUsersRepository">
+      <point x="17.16666666666663" y="-15.0" />
+      <point x="1075.9962797619048" y="210.0" />
+      <point x="1166.8363095238094" y="210.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.SchedulesController" target="com.egms.api.model.Schedule">
+      <point x="66.75" y="-15.0" />
+      <point x="364.93055555555554" y="460.0" />
+      <point x="450.5" y="460.0" />
+      <point x="450.5" y="380.0" />
+      <point x="429.43055555555554" y="380.0" />
+      <point x="26.75" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.service.IStaffUsersRepository" target="com.egms.api.model.Staff">
+      <point x="0.0" y="-15.0" />
+      <point x="1508.8363095238096" y="90.0" />
+      <point x="1460.954613095238" y="90.0" />
+      <point x="29.625" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.controller.ReportsController" target="com.egms.api.service.DateTime">
+      <point x="40.5" y="-15.0" />
+      <point x="529.0796130952381" y="220.0" />
+      <point x="629.2217261904761" y="220.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.egms.api.service.Mapper" target="com.egms.api.model.NonStaffUpdate">
+      <point x="-10.666666666666629" y="-15.0" />
+      <point x="804.1696428571429" y="60.0" />
+      <point x="783.0171130952381" y="60.0" />
+      <point x="38.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.7314917127071823" x="885.0000000000001" y="262.5" />
+  <SelectedNodes>
+    <node>com.egms.api.service.DateTime</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

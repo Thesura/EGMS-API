@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IOutagesRepository extends CrudRepository<Outage, Integer> {
-
+    void deleteOutagesByStatus(String status);
 }

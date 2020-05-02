@@ -17,6 +17,7 @@ public class Coordinate {
     private double lng3;
     private double lat4;
     private double lng4;
+    private int status;
 
     public Coordinate() {
     }
@@ -29,7 +30,8 @@ public class Coordinate {
                       @JsonProperty("lat3") double lat3,
                       @JsonProperty("lng3") double lng3,
                       @JsonProperty("lat4") double lat4,
-                      @JsonProperty("lng4") double lng4) {
+                      @JsonProperty("lng4") double lng4,
+                      @JsonProperty("status") int status) {
         this.area_id = area_id;
         this.lat1 = lat1;
         this.lng1 = lng1;
@@ -39,6 +41,7 @@ public class Coordinate {
         this.lng3 = lng3;
         this.lat4 = lat4;
         this.lng4 = lng4;
+        this.status = status;
     }
 
     public int getArea_id() {
@@ -111,5 +114,13 @@ public class Coordinate {
 
     public void setLng4(double lng4) {
         this.lng4 = lng4;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
