@@ -64,7 +64,7 @@ public class OutagesController {
         JSONObject message = new JSONObject();
         ResponseEntity<JSONObject> responseEntity;
         try {
-            outagesRepository.deleteOutagesByStatus("Fixed");
+            outagesRepository.deleteFixedOutages();
             message.put("Message", "Delete Success");
             responseEntity = new ResponseEntity<>(message, HttpStatus.OK);
         }
